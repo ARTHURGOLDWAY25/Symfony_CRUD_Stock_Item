@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserRegistrationController!{% endblock %}
+
+{% block bootstrap %}
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #d7c797;
+        font-family: "Playfair Display", serif;
+        color: #fff;
+    }
+
+    .example-wrapper {
+        width: 600px;
+        background: #564f3c;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+    span {
+        display: block;
+        text-align: center;
+    }
+
+    /* Apply display flex and space between */
+   .form-control{
+    display:flex;
+    margin-bottom:10px;
+    width:80%;
+    padding:7px
+   
+   }
+   label{
+    font-size:1.1em;
+   }
+
+   .form-group-roles{
+    display:flex;
+    flex-direction:column;
+   }
+   
+   .form_widget{
+    width:83%;
+    padding:7px;
+
+   }
+    
+
+    button {
+        padding: 10px 30px;
+        cursor: pointer;
+        background: #063158;
+        color: #fff;
+        font-family: "Playfair Display", serif;
+        font-size: 1em;
+        letter-spacing: 0.1em;
+        border: none;
+        transition: background 0.5s ease;
+        margin-top:10px;
+    }
+
+    button:hover {
+        background: #0b5394;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h3>Welcome to registration page. <span>Please enter your credentials.</span></h3>
+
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.password.first, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(form.password.second, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group-roles">
+            {# {{ form_row(form.roles, {'attr': {'class': 'form-control'}}) }} #}
+
+            {{form_label(form.roles, null, {'attr': {'class': 'form_label'}})}}
+            {{form_widget(form.roles, {'attr': {'class': 'form_widget'}})}}
+        </div>
+
+        {{ form_rest(form) }}
+
+        <button type="submit">Submit</button>
+
+        <form action ="{{ path('app_user_login')}}" method ="">
+            <button type="button" id ="back-to-login">Go to login</button>
+        </form>
+        
+        {% for label, messages in app.flashes() %}
+            <div class="message-display {{ label|upper }}">
+                {% for message in messages %}
+                    {{message}}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    {{ form_end(form) }}
+</div>
+
+<!-- Bootstrap JS and Popper.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+
+    {% block javascripts %}
+    <!-- You can add additional JavaScript here -->
+    <script>
+        document.getElementById('back-to-login').addEventListener('click', function (){
+            window.location.href = "{{ path('app_user_login')}}"
+        })
+    </script>
+    
+    {% endblock %}
+
+{% endblock %}
+
+
+
+

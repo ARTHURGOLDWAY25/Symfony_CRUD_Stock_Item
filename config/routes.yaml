@@ -1,0 +1,16 @@
+app_user_registration:
+   path: /user/registration
+   controller: App\Controller\UserRegistrationController::register
+
+app_user_login:
+   path: /
+   controller: App\Controller\UserLoginController::login
+
+app_stock_item_index:
+   path: /stock/item
+   controller: App\Controller\StockItemController::index
+   methods: ['GET']
+
+
+
+ 

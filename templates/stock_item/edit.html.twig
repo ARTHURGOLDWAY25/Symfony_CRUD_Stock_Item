@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit StockItem{% endblock %}
+
+{% block stylesheets %}
+     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<style>
+    body{
+        color:#fff;
+        background:#134F5C;
+        font-family: "Playfair Display", serif;
+    }
+
+     button{
+         padding:10px 30px;
+         margin-top:10px;
+         background:#0B9E7C;
+         cursor:pointer;
+         color:#fff;
+         font-family: "Playfair Display", serif;
+         font-size:1em;
+         border:none;
+         transition: background 0.5s ease;
+
+         &:hover{
+            background: #54bba3;
+         }
+    }
+
+</style>
+    <h1>Edit StockItem</h1>
+
+    {{ include('stock_item/_form.html.twig', {'button_label': 'Update'}) }}
+
+    {# <a href="{{ path('app_stock_item_index') }}">back to list</a> #}
+
+    {#  
+    <form action = "{{ path('app_stock_item_index') }}" method="">
+        <button type ="submit" id = "backToList">Back to list</button>
+    </form>
+    #}
+    {{ include('stock_item/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StockItem{% endblock %}
+
+{% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<style>
+body{
+    background:linear-gradient(to right, #2f4246, #134f5c);
+    color:#fff;
+    font-family: "Playfair Display", serif;
+}
+
+.table-wrapper{
+    background:	black;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    padding:40px;
+    width:500px;
+    border-radius:5px;
+    box-shadow: 0 0  10px rgba(0, 0, 0, 0.9)
+
+}
+
+  button{
+         padding:10px 30px;
+         margin-bottom:5px;
+         background:#0B9E7C;
+         cursor:pointer;
+         color:#fff;
+         font-family: "Playfair Display", serif;
+         font-size:1em;
+         border:none;
+         transition: background 0.5s ease;
+
+         &:hover{
+            background: #54bba3;
+         }
+    }
+
+
+.table th{
+    text-align:left;
+    padding:5px;
+    font-size:1em; 
+}
+
+.elements td{
+    transform:translate(50%);
+    font-size:1.2em;  
+    font-family: "Playfair Display", serif;
+}
+
+</style>
+    <h1>StockItem</h1>
+<div class = "table-wrapper">
+    <table class="table">
+        <tbody>
+            <tr class="elements">
+                <th>Id</th>        
+                <td>{{ stock_item.id }}</td>
+            </tr>
+            <tr class="elements">
+                <th>Name</th>
+                <td>{{ stock_item.name }}</td>
+            </tr>
+            <tr class="elements">
+                <th>Quantity</th>
+                <td>{{ stock_item.quantity }}</td>
+            </tr>
+           <tr class="elements">
+                <th>Price</th>
+                <td>{{ stock_item.price }}</td>
+            </tr>
+            <tr class="elements">
+                <th>Description</th>
+                <td>{{ stock_item.description }}</td>
+            </tr>
+            <tr class="elements">
+                <th>CreatedAt</th>
+                <td>{{ stock_item.createdAt ? stock_item.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr class="elements">
+                <th>UpdatedAt</th>
+                <td>{{ stock_item.updatedAt ? stock_item.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_stock_item_index') }}">back to list</a> #}
+    <form action = "{{ path('app_stock_item_index') }}" method="">
+        <button type = "submit" id ='backToList'>Back to list</button>
+    </form>
+
+    {# <a href="{{ path('app_stock_item_edit', {'id': stock_item.id}) }}">edit</a> #}
+
+    <form action = "{{ path('app_stock_item_edit', {'id': stock_item.id}) }}" method="">
+        <button type = "submit" id ='edit'>Edit</button>
+    </form>
+
+    {{ include('stock_item/_delete_form.html.twig') }}
+
+</div>
+{% endblock %}
